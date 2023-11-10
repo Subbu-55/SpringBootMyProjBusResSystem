@@ -1,5 +1,6 @@
 package com.springboot.main.myproj.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +22,18 @@ public class BusOperatorService {
 		return busOperatorRepository.save(busOperator);
 	}
 
+	
+
+	public List<BusOperator> getBusOperatorByExecitiveId(int eid) {
+		return busOperatorRepository.findByExecutiveId(eid);
+	}
+
+
+
 	public BusOperator getById(int eid) throws InvalidIdException {
 		Optional<BusOperator> optional = busOperatorRepository.findById(eid);
 		if(!optional.isPresent())
-			throw new InvalidIdException("boid invalid");
+			throw new InvalidIdException("eid invalid");
 		return optional.get();
 	}
 

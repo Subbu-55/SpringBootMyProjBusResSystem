@@ -6,4 +6,5 @@ import com.springboot.main.myproj.model.BusSchedule;
 
 public interface BusScheduleRepository extends JpaRepository<BusSchedule, Integer>{
 
+
 }

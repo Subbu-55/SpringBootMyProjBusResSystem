@@ -1,8 +1,11 @@
 package com.springboot.main.myproj.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,6 +18,7 @@ import com.springboot.main.myproj.model.BusOperator;
 import com.springboot.main.myproj.model.Executive;
 import com.springboot.main.myproj.model.User;
 import com.springboot.main.myproj.service.BusOperatorService;
+import com.springboot.main.myproj.service.BusService;
 import com.springboot.main.myproj.service.ExecutiveService;
 import com.springboot.main.myproj.service.UserService;
 
@@ -33,6 +37,9 @@ public class BusOperatorController {
 	
 	@Autowired
 	private ExecutiveService executiveService;
+	
+	@Autowired
+	private BusService busService;
 	
 	@PostMapping("/add/{eid}")
 	public ResponseEntity<?> assignBusOperator(@PathVariable("eid") int eid,@RequestBody BusOperator busOperator) {
@@ -62,6 +69,13 @@ public class BusOperatorController {
 
 		}
 	}
+	
+	@GetMapping("/get/bus/{boid}")
+	public List<Bus> getBusByBusOperatorId(@PathVariable("boid") int boid){
+
+		return busService.getBusByBusOperatorId(boid); 
+	}
+	
 	
 	
 	
