@@ -17,10 +17,12 @@ import com.springboot.main.myproj.exception.InvalidIdException;
 import com.springboot.main.myproj.model.Bus;
 import com.springboot.main.myproj.model.BusOperator;
 import com.springboot.main.myproj.model.Customer;
+import com.springboot.main.myproj.model.CustomerBus;
 import com.springboot.main.myproj.model.Executive;
 import com.springboot.main.myproj.model.User;
 import com.springboot.main.myproj.service.BusOperatorService;
 import com.springboot.main.myproj.service.BusService;
+import com.springboot.main.myproj.service.CustomerBusService;
 import com.springboot.main.myproj.service.CustomerService;
 import com.springboot.main.myproj.service.ExecutiveService;
 import com.springboot.main.myproj.service.UserService;
@@ -45,6 +47,9 @@ public class ExecutiveController {
 	
 	@Autowired
 	private BusOperatorService busOperatorService;
+	
+	@Autowired
+	private CustomerBusService customerBusService;
 	
 	@PostMapping("/add")
 	public Executive insertExecutive(@RequestBody Executive executive) {
@@ -95,6 +100,18 @@ public class ExecutiveController {
 		return busOperatorService.getAllBusOperator();
 	}
 	
+	@GetMapping("/get/bookings/all")
+	public List<CustomerBus> getAllBookings(){
+
+		return customerBusService.getAllBookings(); 
+	}
+	
+	@GetMapping("/get/bookings/{cid}")
+	public List<Bus> getBookingsByExecutiveId(@PathVariable("eid") int eid){
+
+		return busService.getBusByExecutiveId(eid); 
+	}
+	
 	@DeleteMapping("/delete/executive/{eid}")
 	public ResponseEntity<?> deleteExecutive(@PathVariable("eid") int eid) {
 		try {
@@ -117,6 +134,8 @@ public class ExecutiveController {
 		}
 	
 	}
+	
+	
 	
 
 }

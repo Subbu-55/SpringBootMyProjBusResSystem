@@ -100,6 +100,19 @@ public class BusOperatorController {
 		}
 	
 	}
+	
+	@DeleteMapping("/busSchedule/delete/{bid}")
+	public ResponseEntity<?> deleteBusSchedule(@PathVariable("bid") int bid) {
+		try {
+			BusSchedule busSchedule = busScheduleService.getById(bid);
+			busScheduleService.deleteBusSchedule(busSchedule.getId());
+			return ResponseEntity.ok().body("BusSchedule Record deleted");
+		} catch (InvalidIdException e) {
+			return ResponseEntity.badRequest().body(e.getMessage());
+		}
+	
+	}
+	
 }
 
 
