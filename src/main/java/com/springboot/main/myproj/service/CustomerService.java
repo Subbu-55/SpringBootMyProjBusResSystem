@@ -1,9 +1,5 @@
 package com.springboot.main.myproj.service;
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 43f2458d06bf02e1a75a3dc78239cf5c6992325b
 import java.util.List;
 import java.util.Optional;
 
@@ -22,14 +18,12 @@ public class CustomerService {
 	public Customer insert(Customer customer) {
 		return customerRepository.save(customer);
 	}
-	
 	public Customer getById(int cid)throws InvalidIdException {
 		Optional<Customer> optional=customerRepository.findById(cid);
 		if(!optional.isPresent())
 			throw new InvalidIdException("cid invalid");
 				return optional.get();
 	}
-<<<<<<< HEAD
 	public List<Customer> getCustomer() {
 		
 		return customerRepository.findAll();
@@ -38,10 +32,9 @@ public class CustomerService {
 
 		return customerRepository.save(customer);
 	}
-=======
-	public List<Customer> getAllCustomer() {
-		return customerRepository.findAll();
+	public void deleteBus(int cid) {
+		
+		customerRepository.deleteById(cid);
 	}
->>>>>>> 43f2458d06bf02e1a75a3dc78239cf5c6992325b
 
 }

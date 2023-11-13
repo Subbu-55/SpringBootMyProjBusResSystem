@@ -12,4 +12,6 @@ public interface BusRepository extends JpaRepository<Bus, Integer>{
 
 	List<Bus> findByExecutiveId(int eid);
 
+	List<Bus> findBusById(int bid);
+
 }

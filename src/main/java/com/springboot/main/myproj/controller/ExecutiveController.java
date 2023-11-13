@@ -14,26 +14,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-<<<<<<< HEAD
 import com.springboot.main.myproj.dto.ExecutiveDto;
-=======
->>>>>>> 43f2458d06bf02e1a75a3dc78239cf5c6992325b
 import com.springboot.main.myproj.exception.InvalidIdException;
 import com.springboot.main.myproj.model.Bus;
 import com.springboot.main.myproj.model.BusOperator;
 import com.springboot.main.myproj.model.Customer;
-<<<<<<< HEAD
-=======
-import com.springboot.main.myproj.model.CustomerBus;
->>>>>>> 43f2458d06bf02e1a75a3dc78239cf5c6992325b
 import com.springboot.main.myproj.model.Executive;
 import com.springboot.main.myproj.model.User;
 import com.springboot.main.myproj.service.BusOperatorService;
 import com.springboot.main.myproj.service.BusService;
-<<<<<<< HEAD
-=======
-import com.springboot.main.myproj.service.CustomerBusService;
->>>>>>> 43f2458d06bf02e1a75a3dc78239cf5c6992325b
 import com.springboot.main.myproj.service.CustomerService;
 import com.springboot.main.myproj.service.ExecutiveService;
 import com.springboot.main.myproj.service.UserService;
@@ -44,9 +33,6 @@ public class ExecutiveController {
 	
 	@Autowired
 	private ExecutiveService executiveService;
-	
-	@Autowired
-	private CustomerService customerService;
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
@@ -60,11 +46,7 @@ public class ExecutiveController {
 	private BusOperatorService busOperatorService;
 	
 	@Autowired
-<<<<<<< HEAD
 	private CustomerService customerService;
-=======
-	private CustomerBusService customerBusService;
->>>>>>> 43f2458d06bf02e1a75a3dc78239cf5c6992325b
 	
 	@PostMapping("/add")
 	public Executive insertExecutive(@RequestBody Executive executive) {
@@ -91,24 +73,11 @@ public class ExecutiveController {
 		return busService.getBusByExecutiveId(eid); 
 	}
 	
-	@GetMapping("/get/bus/all")
-	public List<Bus> getAllBus(){
-
-		return busService.getAllBus();
-	}
-	
-	@GetMapping("/get/customer/all")
-	public List<Customer> getAllCustomer(){
-
-		return customerService.getAllCustomer(); 
-	}
-	
 	@GetMapping("/get/busOperator/{eid}")
 	public List<BusOperator> getBusOperatorByExecitiveId(@PathVariable("eid") int eid){
 		
 		return busOperatorService.getBusOperatorByExecitiveId(eid);
 	}
-<<<<<<< HEAD
 	@GetMapping("/get/customer")
 	public List<Customer> getCustomer(){
 
@@ -125,28 +94,9 @@ public class ExecutiveController {
 			return ResponseEntity.badRequest().body(e.getMessage());
 		}
 	
-=======
-	
-	@GetMapping("/get/busOperator/all")
-	public List<BusOperator> getAllBusOperator(){
-		
-		return busOperatorService.getAllBusOperator();
 	}
 	
-	@GetMapping("/get/bookings/all")
-	public List<CustomerBus> getAllBookings(){
-
-		return customerBusService.getAllBookings(); 
-	}
-	
-	@GetMapping("/get/bookings/{cid}")
-	public List<Bus> getBookingsByExecutiveId(@PathVariable("eid") int eid){
-
-		return busService.getBusByExecutiveId(eid); 
->>>>>>> 43f2458d06bf02e1a75a3dc78239cf5c6992325b
-	}
-	
-	@DeleteMapping("/delete/executive/{eid}")
+	@DeleteMapping("/delete/{eid}")
 	public ResponseEntity<?> deleteExecutive(@PathVariable("eid") int eid) {
 		try {
 			Executive executive = executiveService.getById(eid);
@@ -157,7 +107,6 @@ public class ExecutiveController {
 		}
 	
 	}
-<<<<<<< HEAD
 	
 	@PutMapping("/update/{eid}")
 	public ResponseEntity<?> updateExecutive(@PathVariable("eid") int eid,@RequestBody ExecutiveDto executiveDto){
@@ -175,21 +124,5 @@ public class ExecutiveController {
 			return ResponseEntity.badRequest().body(e.getMessage());
 		}
 	}
-=======
-	@DeleteMapping("/delete/busOperator/{boid}")
-	public ResponseEntity<?> deleteBusOperator(@PathVariable("boid") int boid) {
-		try {
-			BusOperator busOperator = busOperatorService.getById(boid);
-			busOperatorService.deleteBusOperator(busOperator.getId());
-			return ResponseEntity.ok().body("BusOperator Record deleted");
-		} catch (InvalidIdException e) {
-			return ResponseEntity.badRequest().body(e.getMessage());
-		}
-	
-	}
-	
-	
-	
->>>>>>> 43f2458d06bf02e1a75a3dc78239cf5c6992325b
 
 }

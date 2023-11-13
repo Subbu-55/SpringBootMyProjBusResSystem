@@ -27,16 +27,12 @@ public class ExecutiveService {
 		}
 
 		public void deleteExecutive(int eid) {
-<<<<<<< HEAD
 	       executiveRepository.deleteById(eid);
 			
 		}
 
 		public Executive postExecutive(Executive executive) {
 			return executiveRepository.save(executive);
-=======
-             executiveRepository.deleteById(eid);			
->>>>>>> 43f2458d06bf02e1a75a3dc78239cf5c6992325b
 		}
 
 }

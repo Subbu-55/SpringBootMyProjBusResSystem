@@ -1,7 +1,10 @@
 package com.springboot.main.myproj.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,6 +15,7 @@ import com.springboot.main.myproj.exception.InvalidIdException;
 import com.springboot.main.myproj.model.Bus;
 import com.springboot.main.myproj.model.BusOperator;
 import com.springboot.main.myproj.model.BusSchedule;
+import com.springboot.main.myproj.model.Customer;
 import com.springboot.main.myproj.service.BusOperatorService;
 import com.springboot.main.myproj.service.BusScheduleService;
 import com.springboot.main.myproj.service.BusService;
@@ -45,5 +49,11 @@ public class BusScheduleController {
 		catch(InvalidIdException e) {
 			return ResponseEntity.badRequest().body(e.getMessage());
 		}
+	}
+	
+	@GetMapping("/get-all")
+	public List<BusSchedule> getBusSchedule(){
+
+		return busScheduleService.getBusSchedule(); 
 	}
 }

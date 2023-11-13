@@ -41,22 +41,14 @@ public class BusOperatorService {
 
 	public void deleteBusOperator(int boid) {
 		busOperatorRepository.deleteById(boid);
-<<<<<<< HEAD
 		
-=======
->>>>>>> 43f2458d06bf02e1a75a3dc78239cf5c6992325b
 	}
 
 
 
-<<<<<<< HEAD
 	public BusOperator postBusOperator(BusOperator busOperator) {
 		
 		return busOperatorRepository.save(busOperator);
-=======
-	public List<BusOperator> getAllBusOperator() {
-		return busOperatorRepository.findAll();
->>>>>>> 43f2458d06bf02e1a75a3dc78239cf5c6992325b
 	}
 
 }

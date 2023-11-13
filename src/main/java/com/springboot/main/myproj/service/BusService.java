@@ -34,13 +34,15 @@ public class BusService {
 	}
 	public void deleteBus(int bid) {
 		busRepository.deleteById(bid);
-<<<<<<< HEAD
 		
-=======
 	}
-	public List<Bus> getAllBus() {
+	public List<Bus> getBus() {
+		// TODO Auto-generated method stub
 		return busRepository.findAll();
->>>>>>> 43f2458d06bf02e1a75a3dc78239cf5c6992325b
+	}
+	public List<Bus> getBusById(int bid) {
+		// TODO Auto-generated method stub
+		return busRepository.findBusById(bid);
 	}
 
 }
