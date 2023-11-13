@@ -46,6 +46,4 @@ public class BusScheduleController {
 			return ResponseEntity.badRequest().body(e.getMessage());
 		}
 	}
-	
-	
 }
