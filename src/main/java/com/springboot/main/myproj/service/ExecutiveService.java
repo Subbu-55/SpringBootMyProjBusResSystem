@@ -26,4 +26,8 @@ public class ExecutiveService {
 			return optional.get();
 		}
 
+		public void deleteExecutive(int eid) {
+             executiveRepository.deleteById(eid);			
+		}
+
 }

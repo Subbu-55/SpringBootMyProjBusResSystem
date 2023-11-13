@@ -32,5 +32,8 @@ public class BusService {
 			throw new InvalidIdException("bid is incorrect");
 		return optional.get();
 	}
+	public void deleteBus(int bid) {
+		busRepository.deleteById(bid);
+	}
 
 }

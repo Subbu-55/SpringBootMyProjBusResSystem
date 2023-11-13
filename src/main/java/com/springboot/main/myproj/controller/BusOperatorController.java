@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -84,15 +85,21 @@ public class BusOperatorController {
 	@GetMapping("/get/busSchedule/{boid}")
 	public List<BusSchedule> getBusScheduleByBusOperatorId(@PathVariable("boid") int boid){
 
-<<<<<<< HEAD
+
 		return busScheduleService.getBusByBusOperatorId(boid);
 	}
-=======
-		return busScheduleService.getBusByBusOperatorId(boid); 
+	
+	@DeleteMapping("/bus/delete/{bid}")
+	public ResponseEntity<?> deleteBus(@PathVariable("bid") int bid) {
+		try {
+			Bus bus = busService.getById(bid);
+			busService.deleteBus(bus.getId());
+			return ResponseEntity.ok().body("Bus Record deleted");
+		} catch (InvalidIdException e) {
+			return ResponseEntity.badRequest().body(e.getMessage());
+		}
+	
 	}
-	
-	
->>>>>>> abce891822666668ef94ba156407ec566486a4eb
-	
-	
+
+
 }
