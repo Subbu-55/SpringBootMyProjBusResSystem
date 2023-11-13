@@ -30,10 +30,10 @@ public class BusOperatorService {
 
 
 
-	public BusOperator getById(int eid) throws InvalidIdException {
-		Optional<BusOperator> optional = busOperatorRepository.findById(eid);
+	public BusOperator getById(int boid) throws InvalidIdException {
+		Optional<BusOperator> optional = busOperatorRepository.findById(boid);
 		if(!optional.isPresent())
-			throw new InvalidIdException("eid invalid");
+			throw new InvalidIdException("boid invalid");
 		return optional.get();
 	}
 
