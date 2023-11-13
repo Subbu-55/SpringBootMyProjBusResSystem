@@ -1,5 +1,6 @@
 package com.springboot.main.myproj.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,14 @@ public class CustomerService {
 		if(!optional.isPresent())
 			throw new InvalidIdException("cid invalid");
 				return optional.get();
+	}
+	public List<Customer> getCustomer() {
+		
+		return customerRepository.findAll();
+	}
+	public Customer postCustomer(Customer customer) {
+
+		return customerRepository.save(customer);
 	}
 
 }

@@ -37,4 +37,18 @@ public class BusOperatorService {
 		return optional.get();
 	}
 
+
+
+	public void deleteBusOperator(int boid) {
+		busOperatorRepository.deleteById(boid);
+		
+	}
+
+
+
+	public BusOperator postBusOperator(BusOperator busOperator) {
+		
+		return busOperatorRepository.save(busOperator);
+	}
+
 }

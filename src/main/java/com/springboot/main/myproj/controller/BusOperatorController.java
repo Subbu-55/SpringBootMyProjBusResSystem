@@ -5,13 +5,16 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.springboot.main.myproj.dto.BusOperatorDto;
 import com.springboot.main.myproj.exception.InvalidIdException;
 import com.springboot.main.myproj.model.Bus;
 import com.springboot.main.myproj.model.BusOperator;
@@ -85,6 +88,33 @@ public class BusOperatorController {
 	public List<BusSchedule> getBusScheduleByBusOperatorId(@PathVariable("boid") int boid){
 
 		return busScheduleService.getBusByBusOperatorId(boid);
+	}
+	
+	@DeleteMapping("/bus/delete/{bid}")
+	public ResponseEntity<?> deleteBus(@PathVariable("bid") int bid) {
+		try {
+			Bus bus = busService.getById(bid);
+			busService.deleteBus(bus.getId());
+			return ResponseEntity.ok().body("Bus Record deleted");
+		} catch (InvalidIdException e) {
+			return ResponseEntity.badRequest().body(e.getMessage());
+		}
+
+	}
+	
+	@PutMapping("/update/{boid}")
+	public ResponseEntity<?> updateBusOperator(@PathVariable("boid") int boid,@RequestBody BusOperatorDto busOperatorDto){
+		try {
+			BusOperator busOperator = busOperatorService.getById(boid);
+			if(busOperatorDto.getCity()!=null)
+				busOperator.setCity(busOperatorDto.getCity());
+			if(busOperatorDto.getName()!=null)
+				busOperator.setName(busOperatorDto.getName());
+			busOperator=busOperatorService.postBusOperator(busOperator);
+			return ResponseEntity.ok().body(busOperator);	
+		}catch(InvalidIdException e) {
+			return ResponseEntity.badRequest().body(e.getMessage());
+		}
 	}
 	
 	
