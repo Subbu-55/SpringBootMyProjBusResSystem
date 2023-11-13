@@ -87,6 +87,7 @@ public class BusOperatorController {
 	@GetMapping("/get/busSchedule/{boid}")
 	public List<BusSchedule> getBusScheduleByBusOperatorId(@PathVariable("boid") int boid){
 
+
 		return busScheduleService.getBusByBusOperatorId(boid);
 	}
 	
@@ -99,6 +100,7 @@ public class BusOperatorController {
 		} catch (InvalidIdException e) {
 			return ResponseEntity.badRequest().body(e.getMessage());
 		}
+<<<<<<< HEAD
 
 	}
 	
@@ -117,5 +119,23 @@ public class BusOperatorController {
 		}
 	}
 	
+=======
+	
+	}
+	
+	@DeleteMapping("/busSchedule/delete/{bid}")
+	public ResponseEntity<?> deleteBusSchedule(@PathVariable("bid") int bid) {
+		try {
+			BusSchedule busSchedule = busScheduleService.getById(bid);
+			busScheduleService.deleteBusSchedule(busSchedule.getId());
+			return ResponseEntity.ok().body("BusSchedule Record deleted");
+		} catch (InvalidIdException e) {
+			return ResponseEntity.badRequest().body(e.getMessage());
+		}
+	
+	}
+>>>>>>> 43f2458d06bf02e1a75a3dc78239cf5c6992325b
 	
 }
+
+

@@ -34,7 +34,13 @@ public class BusService {
 	}
 	public void deleteBus(int bid) {
 		busRepository.deleteById(bid);
+<<<<<<< HEAD
 		
+=======
+	}
+	public List<Bus> getAllBus() {
+		return busRepository.findAll();
+>>>>>>> 43f2458d06bf02e1a75a3dc78239cf5c6992325b
 	}
 
 }

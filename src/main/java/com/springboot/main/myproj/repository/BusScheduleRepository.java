@@ -10,5 +10,4 @@ public interface BusScheduleRepository extends JpaRepository<BusSchedule, Intege
 
 	List<BusSchedule> findByBusOperatorId(int boid);
 
-
 }

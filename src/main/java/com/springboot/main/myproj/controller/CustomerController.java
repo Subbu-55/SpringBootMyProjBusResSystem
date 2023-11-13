@@ -1,8 +1,14 @@
 package com.springboot.main.myproj.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
+<<<<<<< HEAD
+=======
+import org.springframework.web.bind.annotation.GetMapping;
+>>>>>>> 43f2458d06bf02e1a75a3dc78239cf5c6992325b
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -10,10 +16,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+<<<<<<< HEAD
 import com.springboot.main.myproj.dto.CustomerDto;
 import com.springboot.main.myproj.exception.InvalidIdException;
+=======
+import com.springboot.main.myproj.model.Bus;
+>>>>>>> 43f2458d06bf02e1a75a3dc78239cf5c6992325b
 import com.springboot.main.myproj.model.Customer;
+import com.springboot.main.myproj.model.CustomerBus;
 import com.springboot.main.myproj.model.User;
+import com.springboot.main.myproj.service.CustomerBusService;
 import com.springboot.main.myproj.service.CustomerService;
 import com.springboot.main.myproj.service.UserService;
 
@@ -29,6 +41,9 @@ public class CustomerController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private CustomerBusService customerBusService;
 	
 	@PostMapping("/add")
 	public Customer insertCustomer(@RequestBody Customer customer) {
@@ -49,6 +64,7 @@ public class CustomerController {
 		return customerService.insert(customer);
 	}
 	
+<<<<<<< HEAD
 	@PutMapping("/update/{cid}")
 	public ResponseEntity<?> updateCustomer(@PathVariable("cid") int cid,@RequestBody CustomerDto customerDto){
 		try {
@@ -67,5 +83,13 @@ public class CustomerController {
 	}
 	
 	
+=======
+	@GetMapping("/get/bookings/{cid}")
+	public List<CustomerBus> getBookingsByCustomerId(@PathVariable("cid") int cid){
+
+		return customerBusService.getBookingsByCustomerId(cid); 
+	}
+	
+>>>>>>> 43f2458d06bf02e1a75a3dc78239cf5c6992325b
 	
 }
