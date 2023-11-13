@@ -85,7 +85,6 @@ public class BusOperatorController {
 	@GetMapping("/get/busSchedule/{boid}")
 	public List<BusSchedule> getBusScheduleByBusOperatorId(@PathVariable("boid") int boid){
 
-<<<<<<< HEAD
 
 		return busScheduleService.getBusByBusOperatorId(boid);
 	}
@@ -101,12 +100,6 @@ public class BusOperatorController {
 		}
 	
 	}
-
-
-=======
-		return busScheduleService.getBusByBusOperatorId(boid);
-	}
-	
-	
->>>>>>> 29d9290dcc5ed0bd11f944c1fb78050f2d84b6c1
 }
+
+

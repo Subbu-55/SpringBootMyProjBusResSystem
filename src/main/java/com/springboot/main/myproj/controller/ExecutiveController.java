@@ -71,16 +71,28 @@ public class ExecutiveController {
 		return busService.getBusByExecutiveId(eid); 
 	}
 	
-	@GetMapping("/get/customer/{cid}")
-	public List<Customer> getCustomer(@PathVariable("cid") int cid){
+	@GetMapping("/get/bus/all")
+	public List<Bus> getAllBus(){
 
-		return customerService.getCustomer(cid); 
+		return busService.getAllBus();
+	}
+	
+	@GetMapping("/get/customer/all")
+	public List<Customer> getAllCustomer(){
+
+		return customerService.getAllCustomer(); 
 	}
 	
 	@GetMapping("/get/busOperator/{eid}")
 	public List<BusOperator> getBusOperatorByExecitiveId(@PathVariable("eid") int eid){
 		
 		return busOperatorService.getBusOperatorByExecitiveId(eid);
+	}
+	
+	@GetMapping("/get/busOperator/all")
+	public List<BusOperator> getAllBusOperator(){
+		
+		return busOperatorService.getAllBusOperator();
 	}
 	
 	@DeleteMapping("/delete/executive/{eid}")

@@ -35,5 +35,8 @@ public class BusService {
 	public void deleteBus(int bid) {
 		busRepository.deleteById(bid);
 	}
+	public List<Bus> getAllBus() {
+		return busRepository.findAll();
+	}
 
 }

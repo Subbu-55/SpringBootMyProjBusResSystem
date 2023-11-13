@@ -43,4 +43,10 @@ public class BusOperatorService {
 		busOperatorRepository.deleteById(boid);
 	}
 
+
+
+	public List<BusOperator> getAllBusOperator() {
+		return busOperatorRepository.findAll();
+	}
+
 }
