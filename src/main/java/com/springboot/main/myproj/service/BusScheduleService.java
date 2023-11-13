@@ -16,7 +16,10 @@ public class BusScheduleService {
 		return busScheduleRepository.save(busSchedule);
 	}
 	public List<BusSchedule> getBusByBusOperatorId(int boid) {
+<<<<<<< HEAD
 		
+=======
+>>>>>>> abce891822666668ef94ba156407ec566486a4eb
 		return busScheduleRepository.findByBusOperatorId(boid);
 	}
 
