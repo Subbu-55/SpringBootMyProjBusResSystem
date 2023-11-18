@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.springboot.main.myproj.dto.ExecutiveDto;
+import com.springboot.main.myproj.enums.Role;
 import com.springboot.main.myproj.exception.InvalidIdException;
 import com.springboot.main.myproj.model.Bus;
 import com.springboot.main.myproj.model.BusOperator;
@@ -50,20 +51,13 @@ public class ExecutiveController {
 	
 	@PostMapping("/add")
 	public Executive insertExecutive(@RequestBody Executive executive) {
-		//save user info in db
 		User user=executive.getUser();
-		// i am encrypting the password
-		String passwordPlain = user.getPassword();
-		
+		String passwordPlain = user.getPassword();	
 		String encodedPassword = passwordEncoder.encode(passwordPlain);
 		user.setPassword(encodedPassword);
-		
-		user.setRole("EXECUTIVE");
+		user.setRole(Role.Executive);
 		user = userService.insert(user);
-		// attach the saved user(in step 1)
 		executive.setUser(user);
-		
-		
 		return executiveService.insert(executive);
 	}
 	

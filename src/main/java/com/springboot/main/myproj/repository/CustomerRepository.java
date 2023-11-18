@@ -9,6 +9,8 @@ import com.springboot.main.myproj.model.Customer;
 
 public interface CustomerRepository extends JpaRepository<Customer, Integer>{
 
+	//List<Customer> findByCustomerId(int customerid);
+
 	//List<Customer> findByCustomerId(int cid);
 
 

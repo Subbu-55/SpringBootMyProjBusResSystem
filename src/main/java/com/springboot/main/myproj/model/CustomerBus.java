@@ -1,6 +1,8 @@
 package com.springboot.main.myproj.model;
 
 
+import java.time.LocalDate;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,50 +14,96 @@ public class CustomerBus {
 	@Id 
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	private String dateOfBooking;
-	private int noOfPassengers;
+	private LocalDate dateOfBooking;
+	private String seatNo;
+	private String passengerName;
+	private int age;
+	private String gender;
+	private double price;
 	
 	@ManyToOne
 	private Bus bus;
 	
 	@ManyToOne
 	private Customer customer;
-	
+
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getDateOfBooking() {
+
+	
+
+	public LocalDate getDateOfBooking() {
 		return dateOfBooking;
 	}
-	public void setDateOfBooking(String dateOfBooking) {
+
+	public void setDateOfBooking(LocalDate dateOfBooking) {
 		this.dateOfBooking = dateOfBooking;
 	}
-	public int getNoOfPassengers() {
-		return noOfPassengers;
+
+	public String getSeatNo() {
+		return seatNo;
 	}
-	public void setNoOfPassengers(int noOfPassengers) {
-		this.noOfPassengers = noOfPassengers;
+
+	public void setSeatNo(String seatNo) {
+		this.seatNo = seatNo;
 	}
-	public Customer getCustomer() {
-		return customer;
+	
+	public String getPassengerName() {
+		return passengerName;
 	}
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
+
+	public void setPassengerName(String passengerName) {
+		this.passengerName = passengerName;
 	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
 	public Bus getBus() {
 		return bus;
 	}
+
 	public void setBus(Bus bus) {
 		this.bus = bus;
 	}
-	@Override
-	public String toString() {
-		return "CustomerBus [id=" + id + ", dateOfBooking=" + dateOfBooking + ", noOfPassengers=" + noOfPassengers
-				+ ", customer=" + customer + ", bus=" + bus +"]";
+
+	public Customer getCustomer() {
+		return customer;
 	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+	
+	
+	
+	
 	
 	
 

@@ -1,5 +1,6 @@
 package com.springboot.main.myproj.service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -8,13 +9,20 @@ import org.springframework.stereotype.Service;
 
 import com.springboot.main.myproj.exception.InvalidIdException;
 import com.springboot.main.myproj.model.Bus;
+import com.springboot.main.myproj.model.BusSchedule;
+import com.springboot.main.myproj.model.Seat;
 import com.springboot.main.myproj.repository.BusRepository;
+import com.springboot.main.myproj.repository.SeatRepository;
 
 @Service
 public class BusService {
 
 	@Autowired 
-	private BusRepository busRepository;
+	private  BusRepository busRepository;
+	
+	@Autowired
+	private SeatRepository seatRepository;
+	
 	public Bus insert(Bus bus) {
 		return busRepository.save(bus);
 	}
@@ -44,5 +52,29 @@ public class BusService {
 		// TODO Auto-generated method stub
 		return busRepository.findBusById(bid);
 	}
+	public List<Bus> findby(String source, String destination, LocalDate date) {
+		// TODO Auto-generated method stub
+		return busRepository.findBy(source,destination,date);
+	}
+	/*public void updateSeatAvailability(int bid, int sid, String newStatus) throws InvalidIdException {
+		try {
+	    Seat seat = seatRepository.findByBusIdAndSeatId(bid, sid);
+	    if (seat == null) {
+	        throw new InvalidIdException("Seat not found for busId");
+	    }
+	    if ("AVAILABLE".equalsIgnoreCase(seat.getAvailable()) && "UNAVAILABLE".equalsIgnoreCase(newStatus)) {
+	        seat.setAvailable("UNAVAILABLE");
+	    } else if (!"AVAILABLE".equalsIgnoreCase(seat.getAvailable()) && "AVAILABLE".equalsIgnoreCase(newStatus)) {
+	        seat.setAvailable("AVAILABLE");
+	    }
+
+	    seatRepository.save(seat);
+		}catch(Exception e) {
+			e.getMessage();
+		}
+	}*/
+
+	
+	
 
 }

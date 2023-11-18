@@ -1,12 +1,16 @@
 package com.springboot.main.myproj.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -59,5 +63,28 @@ public class BusController {
 
 		return busService.getBusById(bid); 
 	}
+	@GetMapping("/get/{source}/{destination}/{date}") 
+	public List<Bus> getBussesbysdd(@PathVariable("source") String source,
+			@PathVariable("destination") String destination,
+			@PathVariable("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
+		List<Bus> list = busService.findby(source, destination, date);
+		return list;
+
+	}
+	/*@PutMapping("/seats/{bid}/{seatNumber}")
+	public ResponseEntity<?> updateSeatAvailability(@PathVariable("bid") int bid, @PathVariable("sid") int sid, @RequestBody Str
+{
+	    try {
+	        busService.updateSeatAvailability(bid, sid, availabilityStatus);
+	        return ResponseEntity.ok("Seat availability updated successfully.");
+	    } catch (InvalidIdException e) {
+	        // Handle SeatNotFoundException (custom exception or any other exception as needed)
+	        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Seat not found");
+	    } catch (Exception e) {
+	        // Handle other exceptions
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Internal server error");
+	    }
+	}*/
+
 	
 }

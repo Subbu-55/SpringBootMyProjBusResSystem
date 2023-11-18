@@ -23,5 +23,10 @@ public class BusScheduleService {
 		// TODO Auto-generated method stub
 		return busScheduleRepository.findAll();
 	}
+	public BusSchedule getByBusId(int bid) {
+		// TODO Auto-generated method stub
+		return busScheduleRepository.findbyBusId(bid);
+	}
+	
 
 }

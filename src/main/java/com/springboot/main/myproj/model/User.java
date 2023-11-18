@@ -7,6 +7,8 @@ import java.util.Collection;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,6 +16,8 @@ import javax.persistence.Id;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import com.springboot.main.myproj.enums.Role;
 
 
 
@@ -28,7 +32,8 @@ public class User implements UserDetails  {
 	@Column(nullable = false)
 	private String password;
 	@Column(nullable = false)
-	private String role;
+	@Enumerated(EnumType.STRING)
+	private Role role;
 
 	public int getId() {
 		return id;
@@ -54,17 +59,17 @@ public class User implements UserDetails  {
 		this.password = password;
 	}
 
-	public String getRole() {
+	public Role getRole() {
 		return role;
 	}
 
-	public void setRole(String role) {
-		this.role=role;
+	public void setRole(Role role) {
+		this.role = role;
 	}
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		SimpleGrantedAuthority sga = new SimpleGrantedAuthority(role);
+		SimpleGrantedAuthority sga = new SimpleGrantedAuthority(role.name());
 		Collection<GrantedAuthority> list =new ArrayList<>();
 		list.add(sga);
 		return list;

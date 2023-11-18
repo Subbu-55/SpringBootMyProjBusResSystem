@@ -1,19 +1,25 @@
 package com.springboot.main.myproj.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
 import com.springboot.main.myproj.dto.CustomerDto;
+import com.springboot.main.myproj.enums.Role;
 import com.springboot.main.myproj.exception.InvalidIdException;
-import com.springboot.main.myproj.model.Bus;
 import com.springboot.main.myproj.model.Customer;
 import com.springboot.main.myproj.model.User;
 import com.springboot.main.myproj.service.CustomerService;
@@ -42,7 +48,7 @@ public class CustomerController {
 		String encodedPassword = passwordEncoder.encode(passwordPlain);
 		user.setPassword(encodedPassword);
 		
-		user.setRole("CUSTOMER");
+		user.setRole(Role.Customer);
 		user = userService.insert(user);
 		// attach the saved user(in step 1)
 		customer.setUser(user);
@@ -78,7 +84,15 @@ public class CustomerController {
 		}
 
 	}
-	
+	@GetMapping("/bookings/{cid}")
+	public List<Customer> getAllCustomer(
+			@RequestParam(value = "page", required = false, defaultValue = "0") Integer page,
+			@RequestParam(value = "size", required = false, defaultValue = "10000000") Integer size) {
+
+		Pageable pageable = PageRequest.of(page, size); // null null
+		return customerService.getAll(pageable);
+
+	}
 	
 	
 }

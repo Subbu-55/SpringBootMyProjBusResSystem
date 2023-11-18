@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.springboot.main.myproj.dto.BusOperatorDto;
+import com.springboot.main.myproj.enums.Role;
 import com.springboot.main.myproj.exception.InvalidIdException;
 import com.springboot.main.myproj.model.Bus;
 import com.springboot.main.myproj.model.BusOperator;
@@ -65,7 +66,7 @@ public class BusOperatorController {
 		String encodedPassword = passwordEncoder.encode(passwordPlain);
 		user.setPassword(encodedPassword);
 		
-		user.setRole("BUSOPERATOR");
+		user.setRole(Role.BusOperator);
 		user = userService.insert(user);
 		// attach the saved user(in step 1)
 		busOperator.setUser(user);
