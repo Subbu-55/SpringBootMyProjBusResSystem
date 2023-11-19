@@ -20,6 +20,7 @@ import com.springboot.main.myproj.model.Bus;
 import com.springboot.main.myproj.model.BusSchedule;
 import com.springboot.main.myproj.model.Customer;
 import com.springboot.main.myproj.model.CustomerBus;
+import com.springboot.main.myproj.model.Seat;
 import com.springboot.main.myproj.service.BusScheduleService;
 import com.springboot.main.myproj.service.BusService;
 import com.springboot.main.myproj.service.CustomerBusService;
@@ -39,6 +40,9 @@ public class CustomerBusController {
 	private BusService busService;
 	@Autowired
 	private BusScheduleService busScheduleService;
+	
+	@Autowired
+	private Seat seat;
 	
 	
 	
@@ -76,7 +80,9 @@ public class CustomerBusController {
 				customerBus.setAge(passengerDto.getAge());
 				customerBus.setGender(passengerDto.getGender());
 				customerBus.setPrice(busSchedule.getFare());
-				customerBus.setSeatNo(passengerDto.getSeatNo());
+				seat.setSeatNumber(passengerDto.getSeatNo());
+				String seatNo=passengerDto.getSeatNo();
+				  customerBusService.changestatus(seatNo);
                 totalPrice = totalPrice+(customerBus.getPrice());
 				// Add the processed ticket to the list
 				bookedTickets.add(customerBusService.insert(customerBus));

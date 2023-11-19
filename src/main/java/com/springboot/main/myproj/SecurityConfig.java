@@ -34,7 +34,7 @@ import com.springboot.main.myproj.service.UserService;
 		protected void configure(HttpSecurity http) throws Exception {
 			http
 			.authorizeRequests()
-			.antMatchers("/executive/add","/busOperator/add/{eid}","/customer/add","/seat/add/{bid}").permitAll()
+			.antMatchers("/executive/add","/busOperator/add/{eid}","/customer/add","/seat/add/{bid}","/bus/get/filter").permitAll()
 			.antMatchers(HttpMethod.GET,"/user/login").authenticated()
 			.anyRequest().authenticated()
 			.and().httpBasic()

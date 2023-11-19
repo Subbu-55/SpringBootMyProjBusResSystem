@@ -11,8 +11,12 @@ public class CustomerBusService {
 
 	@Autowired
 	private CustomerBusRepository customerBusRepository;
+	
 	public CustomerBus insert(CustomerBus customerBus) {
 		return  customerBusRepository.save(customerBus);
 	}
+	public void changestatus(String seatNo){
+	  customerBusRepository.changestatus(seatNo);
+	  }
 
 }

@@ -6,7 +6,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import org.springframework.stereotype.Component;
+
 @Entity
+@Component
 public class Seat {
 
 	@Id
@@ -22,9 +25,7 @@ public class Seat {
     
     private String level;
     
-    @ManyToOne
-    private Bus bus;
-
+    
 	public int getId() {
 		return id;
 	}
@@ -50,14 +51,7 @@ public class Seat {
 		this.available = available;
 	}
 
-	public Bus getBus() {
-		return bus;
-	}
-
-	public void setBus(Bus bus) {
-		this.bus = bus;
-	}
-
+	
 	public String getSide() {
 		return side;
 	}

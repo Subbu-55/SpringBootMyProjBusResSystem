@@ -48,7 +48,7 @@ public class CustomerController {
 		String encodedPassword = passwordEncoder.encode(passwordPlain);
 		user.setPassword(encodedPassword);
 		
-		user.setRole(Role.Customer);
+		user.setRole(Role.CUSTOMER);
 		user = userService.insert(user);
 		// attach the saved user(in step 1)
 		customer.setUser(user);

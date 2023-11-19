@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class CustomerBus {
@@ -15,7 +16,7 @@ public class CustomerBus {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	private LocalDate dateOfBooking;
-	private String seatNo;
+	
 	private String passengerName;
 	private int age;
 	private String gender;
@@ -26,6 +27,9 @@ public class CustomerBus {
 	
 	@ManyToOne
 	private Customer customer;
+	
+	@OneToOne
+	private Seat seat;
 
 	public int getId() {
 		return id;
@@ -45,13 +49,7 @@ public class CustomerBus {
 		this.dateOfBooking = dateOfBooking;
 	}
 
-	public String getSeatNo() {
-		return seatNo;
-	}
-
-	public void setSeatNo(String seatNo) {
-		this.seatNo = seatNo;
-	}
+	
 	
 	public String getPassengerName() {
 		return passengerName;

@@ -20,7 +20,7 @@ import com.springboot.main.myproj.service.SeatService;
 @RequestMapping("/seat")
 public class SeatController {
 
-	@Autowired
+	/*@Autowired
 	private SeatService seatService;
 	@Autowired
 	private BusService busService;
@@ -30,7 +30,6 @@ public class SeatController {
 		try {
 			Bus bus=busService.getById(bid);
 			for (Seat seat : seats) {
-	            seat.setBus(bus);
 	            seatService.insert(seat);
 	        }
 			return ResponseEntity.ok().body(seats);
@@ -39,5 +38,5 @@ public class SeatController {
 		}
 		
 		
-	}
+	}*/
 }

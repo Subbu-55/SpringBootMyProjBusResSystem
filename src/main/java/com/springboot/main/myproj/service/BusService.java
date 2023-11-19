@@ -73,6 +73,10 @@ public class BusService {
 			e.getMessage();
 		}
 	}*/
+	public List<Bus> getBusesWithFilters( String seatType, Boolean hasPersonalScreen,
+			Boolean hasWaterBottle, Boolean hasBlanket, Boolean hasChargingPoints) {
+		return busRepository.findWithFilters(seatType, hasPersonalScreen, hasWaterBottle, hasBlanket, hasChargingPoints);
+	}
 
 	
 	

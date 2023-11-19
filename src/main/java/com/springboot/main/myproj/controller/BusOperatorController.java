@@ -66,7 +66,7 @@ public class BusOperatorController {
 		String encodedPassword = passwordEncoder.encode(passwordPlain);
 		user.setPassword(encodedPassword);
 		
-		user.setRole(Role.BusOperator);
+		user.setRole(Role.BUSOPERATOR);
 		user = userService.insert(user);
 		// attach the saved user(in step 1)
 		busOperator.setUser(user);
