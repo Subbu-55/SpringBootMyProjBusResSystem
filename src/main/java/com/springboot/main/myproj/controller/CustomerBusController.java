@@ -8,6 +8,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -98,6 +99,16 @@ public class CustomerBusController {
 			return ResponseEntity.badRequest().body(e.getMessage());
 		}
 
+	}
+	@GetMapping("/get/book/{cid}")
+	public ResponseEntity<?> getBookByCustomer(@PathVariable ("cid") int cid) {
+		try {
+			Customer customer=customerService.getById(cid);
+			List<CustomerBus> list=customerBusService.findall(cid);
+			return ResponseEntity.ok().body(list);
+		}catch (InvalidIdException e) {
+			return ResponseEntity.badRequest().body(e.getMessage());
+		}
 	}
 	
 	
