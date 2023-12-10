@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,6 +28,7 @@ import com.springboot.main.myproj.service.UserService;
 
 @RestController
 @RequestMapping("/customer")
+@CrossOrigin(origins = {"http://localhost:3000"})
 public class CustomerController {
 
 	@Autowired
@@ -40,11 +42,11 @@ public class CustomerController {
 	
 	@PostMapping("/add")
 	public Customer insertCustomer(@RequestBody Customer customer) {
+		System.out.println(customer);
 		//save user info in db
 		User user=customer.getUser();
 		// i am encrypting the password
 		String passwordPlain = user.getPassword();
-		
 		String encodedPassword = passwordEncoder.encode(passwordPlain);
 		user.setPassword(encodedPassword);
 		
@@ -92,6 +94,12 @@ public class CustomerController {
 		Pageable pageable = PageRequest.of(page, size); // null null
 		return customerService.getAll(pageable);
 
+	}
+	@GetMapping("/get/{uid}")
+	public Customer getAllCustomer(@PathVariable("uid") int uid){
+	  Customer customer=customerService.getByUserId(uid);
+		
+		return customer;
 	}
 	
 	

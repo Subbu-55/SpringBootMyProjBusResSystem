@@ -99,6 +99,11 @@ public class User implements UserDetails  {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", username=" + username + ", password=" + password + ", role=" + role + "]";
+	}
+
 	
 
 }

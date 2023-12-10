@@ -16,7 +16,6 @@ public class CustomerBus {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	private LocalDate dateOfBooking;
-	
 	private String passengerName;
 	private int age;
 	private String gender;
@@ -97,6 +96,14 @@ public class CustomerBus {
 
 	public void setPrice(double price) {
 		this.price = price;
+	}
+
+	public Seat getSeat() {
+		return seat;
+	}
+
+	public void setSeat(Seat seat) {
+		this.seat = seat;
 	}
 	
 	

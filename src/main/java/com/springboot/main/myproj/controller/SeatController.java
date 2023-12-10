@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,9 +20,10 @@ import com.springboot.main.myproj.service.SeatService;
 
 @RestController
 @RequestMapping("/seat")
+@CrossOrigin(origins = {"http://localhost:3000"})
 public class SeatController {
 
-	/*@Autowired
+	@Autowired
 	private SeatService seatService;
 	@Autowired
 	private BusService busService;
@@ -38,6 +41,16 @@ public class SeatController {
 		}
 		
 		
-	}*/
+	}
+	
+	@GetMapping("/get-all/{bid}")
+	public List<?> getseats(@PathVariable ("bid") int bid) {
+		return seatService.getseats(bid);
+	}
+	
+	@GetMapping("/getavailable/{bid}")
+	public List<?> getavailableseats(@PathVariable ("bid") int bid) {
+		return seatService.getavailableseats(bid);
+	}
 	
 }

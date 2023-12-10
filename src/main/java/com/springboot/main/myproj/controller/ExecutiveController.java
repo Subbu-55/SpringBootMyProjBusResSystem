@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,6 +31,7 @@ import com.springboot.main.myproj.service.UserService;
 
 @RestController
 @RequestMapping("/executive")
+@CrossOrigin(origins = {"http://localhost:3000"})
 public class ExecutiveController {
 	
 	@Autowired
@@ -71,6 +73,11 @@ public class ExecutiveController {
 	public List<BusOperator> getBusOperatorByExecitiveId(@PathVariable("eid") int eid){
 		
 		return busOperatorService.getBusOperatorByExecitiveId(eid);
+	}
+	@GetMapping("/get/busOperator")
+	public List<BusOperator> getBusOperator(){
+		
+		return busOperatorService.getBusOperator();
 	}
 	@GetMapping("/get/customer")
 	public List<Customer> getCustomer(){

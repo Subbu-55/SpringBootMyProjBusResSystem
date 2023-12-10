@@ -2,9 +2,12 @@ package com.springboot.main.myproj.controller;
 
 import java.util.List;
 
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,6 +33,7 @@ import com.springboot.main.myproj.service.UserService;
 
 @RestController
 @RequestMapping("/busOperator")
+@CrossOrigin(origins = {"http://localhost:3000"})
 public class BusOperatorController {
 
 	@Autowired
@@ -37,6 +41,9 @@ public class BusOperatorController {
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+	
+	@Autowired
+	private Logger logger;
 	
 	@Autowired
 	private UserService userService;
@@ -112,11 +119,13 @@ public class BusOperatorController {
 			if(busOperatorDto.getName()!=null)
 				busOperator.setName(busOperatorDto.getName());
 			busOperator=busOperatorService.postBusOperator(busOperator);
-			return ResponseEntity.ok().body(busOperator);	
+			logger.info("updated status of busOperator"+busOperator.getCity()+"to"+busOperatorDto.getCity());
+			return ResponseEntity.status(HttpStatus.OK).body(busOperator);	
 		}catch(InvalidIdException e) {
-			return ResponseEntity.badRequest().body(e.getMessage());
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}
 	}
+	
 	
 	
 }

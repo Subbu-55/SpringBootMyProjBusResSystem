@@ -8,7 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 @Entity
-public class Bus {
+
+public class Bus{
 	@Id 
 	@GeneratedValue(strategy = GenerationType.AUTO) // 
 	private int id;
@@ -21,23 +22,11 @@ public class Bus {
     
     private int seatsAvailable;
 
-    private Boolean hasPersonalScreen;
-
-    private Boolean hasWaterBottle;
-
-    private Boolean hasBlanket;
-
-    private Boolean hasChargingPoints;
     
-    private Boolean hasAc;
+    
+    private String busType;
 	
-	public Boolean getHasAc() {
-		return hasAc;
-	}
-
-	public void setHasAc(Boolean hasAc) {
-		this.hasAc = hasAc;
-	}
+	
 
 	@ManyToOne
 	private BusOperator busOperator;
@@ -112,37 +101,7 @@ public class Bus {
 		this.seatType = seatType;
 	}
 
-	public Boolean getHasPersonalScreen() {
-		return hasPersonalScreen;
-	}
-
-	public void setHasPersonalScreen(Boolean hasPersonalScreen) {
-		this.hasPersonalScreen = hasPersonalScreen;
-	}
-
-	public Boolean getHasWaterBottle() {
-		return hasWaterBottle;
-	}
-
-	public void setHasWaterBottle(Boolean hasWaterBottle) {
-		this.hasWaterBottle = hasWaterBottle;
-	}
-
-	public Boolean getHasBlanket() {
-		return hasBlanket;
-	}
-
-	public void setHasBlanket(Boolean hasBlanket) {
-		this.hasBlanket = hasBlanket;
-	}
-
-	public Boolean getHasChargingPoints() {
-		return hasChargingPoints;
-	}
-
-	public void setHasChargingPoints(Boolean hasChargingPoints) {
-		this.hasChargingPoints = hasChargingPoints;
-	}
+	
 	
 
 	public int getSeatsAvailable() {
@@ -151,6 +110,15 @@ public class Bus {
 
 	public void setSeatsAvailable(int seatsAvailable) {
 		this.seatsAvailable = seatsAvailable;
+	}
+	
+
+	public String getBusType() {
+		return busType;
+	}
+
+	public void setBusType(String busType) {
+		this.busType = busType;
 	}
 
 	@Override

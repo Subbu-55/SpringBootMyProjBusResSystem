@@ -5,7 +5,7 @@ public class PassengerDto {
 	private String passengerName;
 	private int age;
 	private String gender;
-	private String seatNo;
+	private String seatNumber;
 	
 	public String getPassengerName() {
 		return passengerName;
@@ -25,12 +25,13 @@ public class PassengerDto {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-	public String getSeatNo() {
-		return seatNo;
+	public String getSeatNumber() {
+		return seatNumber;
 	}
-	public void setSeatNo(String seatNo) {
-		this.seatNo = seatNo;
+	public void setSeatNumber(String seatNumber) {
+		this.seatNumber = seatNumber;
 	}
+	
 	
 	
 	

@@ -51,4 +51,18 @@ public class BusOperatorService {
 		return busOperatorRepository.save(busOperator);
 	}
 
+
+
+	public BusOperator getByUserId(int id) {
+		
+		return busOperatorRepository.getByUserId(id);
+	}
+
+
+
+	public List<BusOperator> getBusOperator() {
+		// TODO Auto-generated method stub
+		return busOperatorRepository.findAll();
+	}
+
 }

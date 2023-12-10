@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.springboot.main.myproj.exception.InvalidIdException;
 import com.springboot.main.myproj.model.BusOperator;
 import com.springboot.main.myproj.model.Customer;
+import com.springboot.main.myproj.model.User;
 import com.springboot.main.myproj.repository.CustomerRepository;
 @Service
 public class CustomerService {
@@ -40,6 +41,14 @@ public class CustomerService {
 	}
 	public  List<Customer> getAll(Pageable pageable) {
 		return customerRepository.findAll(pageable).getContent();
+	}
+	public Customer getByUserId(int uid) {
+		
+		return customerRepository.finduser(uid);
+	}
+	public Customer getByUserbyId(int id) {
+		
+		return customerRepository.findByUserbyId(id);
 	}
 	
 	

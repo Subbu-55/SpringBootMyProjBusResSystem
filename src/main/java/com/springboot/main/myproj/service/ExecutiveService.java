@@ -35,4 +35,9 @@ public class ExecutiveService {
 			return executiveRepository.save(executive);
 		}
 
+		public Executive getByUserId(int id) {
+			// TODO Auto-generated method stub
+			return executiveRepository.getByUserId(id);
+		}
+
 }

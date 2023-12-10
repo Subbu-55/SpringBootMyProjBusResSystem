@@ -8,6 +8,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,9 +27,11 @@ import com.springboot.main.myproj.service.BusScheduleService;
 import com.springboot.main.myproj.service.BusService;
 import com.springboot.main.myproj.service.CustomerBusService;
 import com.springboot.main.myproj.service.CustomerService;
+import com.springboot.main.myproj.service.SeatService;
 
 @RestController
 @RequestMapping("/customerBus")
+@CrossOrigin(origins = {"http://localhost:3000"})
 public class CustomerBusController {
 
 	@Autowired
@@ -44,6 +47,9 @@ public class CustomerBusController {
 	
 	@Autowired
 	private Seat seat;
+	
+	@Autowired
+	private SeatService seatService;
 	
 	
 	
@@ -68,6 +74,7 @@ public class CustomerBusController {
 		try {
 			Customer customer = customerService.getById(cid);
 			Bus bus = busService.getById(bid);
+			int noOfTickets=0;
 			List<CustomerBus> bookedTickets = new ArrayList<>();
             double totalPrice=0;
 			for (PassengerDto passengerDto : passengerDtoList) {
@@ -81,8 +88,11 @@ public class CustomerBusController {
 				customerBus.setAge(passengerDto.getAge());
 				customerBus.setGender(passengerDto.getGender());
 				customerBus.setPrice(busSchedule.getFare());
-				seat.setSeatNumber(passengerDto.getSeatNo());
-				String seatNo=passengerDto.getSeatNo();
+				Seat seat=seatService.getSeat(passengerDto.getSeatNumber(),bid);
+				seat.setSeatNumber(passengerDto.getSeatNumber());
+				customerBus.setSeat(seat);
+				noOfTickets=noOfTickets+1;
+				String seatNo=passengerDto.getSeatNumber();
 				  customerBusService.changestatus(seatNo);
                 totalPrice = totalPrice+(customerBus.getPrice());
 				// Add the processed ticket to the list
@@ -92,6 +102,7 @@ public class CustomerBusController {
 			Map<String, Object> response = new HashMap<>();
 	        response.put("bookedTickets", bookedTickets);
 	        response.put("totalPrice", totalPrice);
+	        response.put("noOfTickets", noOfTickets);
 
 	        return ResponseEntity.ok().body(response);
 
@@ -110,6 +121,7 @@ public class CustomerBusController {
 			return ResponseEntity.badRequest().body(e.getMessage());
 		}
 	}
+	
 	
 	
 	

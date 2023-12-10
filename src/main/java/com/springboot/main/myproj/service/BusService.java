@@ -1,6 +1,7 @@
 package com.springboot.main.myproj.service;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
@@ -77,6 +78,37 @@ public class BusService {
 			Boolean hasWaterBottle, Boolean hasBlanket, Boolean hasChargingPoints) {
 		return busRepository.findWithFilters(seatType, hasPersonalScreen, hasWaterBottle, hasBlanket, hasChargingPoints);
 	}
+	public List<BusSchedule> findbysdd(String source, String destination, String doj) {
+		// TODO Auto-generated method stub
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd"); 
+		LocalDate parsedDate = LocalDate.parse(doj,formatter);
+		
+		return busRepository.findBysdd(source, destination, parsedDate);
+	}
+	public List<BusSchedule> findwithseatType(String source, String destination, String doj, String seatType) {
+		
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd"); 
+	    LocalDate parsedDate = LocalDate.parse(doj, formatter);
+		return busRepository.findwithseatType(source,destination,parsedDate,seatType);
+	}
+	public List<BusSchedule> findwithbusseatType(String source, String destination, String doj, String seatType,
+			String busType) {
+		// TODO Auto-generated method stub
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd"); 
+	    LocalDate parsedDate = LocalDate.parse(doj, formatter);
+		return busRepository.findwithbusseatType(source,destination,parsedDate,seatType,busType);
+	}
+	public List<BusSchedule> findwithbusType(String source, String destination, String doj, String busType) {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd"); 
+	    LocalDate parsedDate = LocalDate.parse(doj, formatter);
+		return busRepository.findwithbusType(source,destination,parsedDate,busType);
+	}
+	public List<Bus> getBuswithbusid(int bid) {
+		// TODO Auto-generated method stub
+		return busRepository.findBuswithbusid(bid);
+	}
+	
+	
 
 	
 	

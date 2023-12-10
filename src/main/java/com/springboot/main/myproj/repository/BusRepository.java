@@ -29,6 +29,34 @@ public interface BusRepository extends JpaRepository<Bus, Integer>{
 	List<Bus> findWithFilters( String seatType, Boolean hasPersonalScreen, Boolean hasWaterBottle,
 			Boolean hasBlanket, Boolean hasChargingPoints);
     
+
+    
+    
+
+    @Query("SELECT bs FROM BusSchedule bs WHERE bs.bus.source = ?1 AND bs.bus.destination = ?2 AND bs.doj= ?3")
+	List<BusSchedule> findBysdd(String source, String destination, LocalDate parsedDate);
+
+    @Query("SELECT bs FROM BusSchedule bs WHERE bs.bus.source = ?1 AND bs.bus.destination = ?2 AND bs.doj= ?3 AND bs.bus.seatType=?4")
+	List<BusSchedule> findwithseatType(String source, String destination, LocalDate parsedDate, String seatType);
+
+    @Query("SELECT bs FROM BusSchedule bs WHERE bs.bus.source = ?1 AND bs.bus.destination = ?2 AND bs.doj= ?3 AND bs.bus.seatType=?4 AND bs.bus.busType=?5")
+	List<BusSchedule> findwithbusseatType(String source, String destination, LocalDate parsedDate, String seatType,
+			String busType);
+
+  
+    @Query("SELECT bs FROM BusSchedule bs WHERE bs.bus.source = ?1 AND bs.bus.destination = ?2 AND bs.doj= ?3 AND bs.bus.busType=?4")
+	List<BusSchedule> findwithbusType(String source, String destination, LocalDate parsedDate, String busType);
+
+    @Query(value = "Select * from bus where id=?1",nativeQuery = true)
+	List<Bus> findBuswithbusid(int bid);
+
+    
+
+    
+    
+
+
+    
     
 
 
